@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3bbf456d-52f9-468a-9f43-02e199b4c386"
+      }
+    },
+    "owner": "mo7med"
   }
 }
