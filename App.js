@@ -1,7 +1,3 @@
-// Turn on/off Flashlight to Make a Torch App in React Native
-// https://aboutreact.com/turn-on-off-flashlight-to-make-a-torch-app-in-react-native/
-
-// import React in our code
 import React, { useState } from "react";
 
 // import all the components we are going to use
@@ -11,12 +7,11 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TextInput,
 } from "react-native";
 
 // import Torch Component
 import Torch from "react-native-torch";
-import ProgressBar from "./ProgressBar";
+// import ProgressBar from "./ProgressBar";
 
 const App = () => {
   //Default Keep Awake off
@@ -35,22 +30,78 @@ const App = () => {
       }
     }
   };
-
+  const handleIncrease = () => {
+    setCount((prev) => (prev == 9 ? prev : ++prev));
+  };
+  const handleMinus = () => {
+    setCount((prev) => (prev == 1 ? prev : --prev));
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View>
         <Text style={styles.titleText}>
           Turn on/off Flashlight to Make a Torch App in React Native
         </Text>
-        <TextInput
-          style={styles.inputStyle}
-          value={count}
-          onChangeText={setCount}
-          keyboardType="numeric"
-          maxLength={1}
-          inputMode="numeric"
-        />
-        <ProgressBar />
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.buttonStyle}
+            onPress={handleMinus}
+          >
+            <Text
+              style={{
+                ...styles.buttonTextStyle,
+                fontSize: 24,
+                fontWeight: "bold",
+              }}
+            >
+              -
+            </Text>
+          </TouchableOpacity>
+          <View
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                ...styles.buttonTextStyle,
+                color: "#000",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 24,
+                fontWeight: "bold",
+              }}
+            >
+              {count}
+            </Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.buttonStyle}
+            onPress={handleIncrease}
+          >
+            <Text
+              style={{
+                ...styles.buttonTextStyle,
+                fontSize: 24,
+                fontWeight: "bold",
+              }}
+            >
+              +
+            </Text>
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.buttonStyle}
