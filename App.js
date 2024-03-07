@@ -26,7 +26,7 @@ const App = () => {
       if (count > 1) {
         setTimeout(() => {
           handlePress();
-        }, 1000 / count);
+        }, 5000 / count);
       }
     }
   };
