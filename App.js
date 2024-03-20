@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-// import all the components we are going to use
+import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,34 +6,46 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-
-// import Torch Component
 import Torch from "react-native-torch";
-// import ProgressBar from "./ProgressBar";
 
 const App = () => {
-  //Default Keep Awake off
   const [isTorchOn, setIsTorchOn] = useState(false);
   const [statusLite, setStatusLite] = useState(false);
   const [count, setCount] = useState(1);
 
-  const handlePress = () => {
+  useEffect(() => {
+    let intervalId;
     if (statusLite) {
-      Torch.switchState(!isTorchOn);
-      setIsTorchOn(!isTorchOn);
-      if (count > 1) {
-        setTimeout(() => {
-          handlePress();
-        }, 5000 / count);
+      if (count === 1) {
+        Torch.switchState(true);
+        setIsTorchOn(true);
+      } else {
+        intervalId = setInterval(() => {
+          Torch.switchState(!isTorchOn);
+          setIsTorchOn((prev) => !prev);
+        }, 1000 / 4); // Toggles 4 times per second when count is 9
       }
+    } else {
+      clearInterval(intervalId);
+      Torch.switchState(false);
+      setIsTorchOn(false);
     }
+
+    return () => clearInterval(intervalId);
+  }, [statusLite, count, isTorchOn]);
+
+  const handlePress = () => {
+    setStatusLite((prev) => !prev);
   };
+
   const handleIncrease = () => {
-    setCount((prev) => (prev == 9 ? prev : ++prev));
+    setCount((prev) => (prev === 9 ? prev : prev + 1));
   };
+
   const handleMinus = () => {
-    setCount((prev) => (prev == 1 ? prev : --prev));
+    setCount((prev) => (prev === 1 ? prev : prev - 1));
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -105,12 +115,10 @@ const App = () => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.buttonStyle}
-          onPress={() => {
-            setStatusLite((pre) => !pre), handlePress();
-          }}
+          onPress={handlePress}
         >
           <Text style={styles.buttonTextStyle}>
-            {isTorchOn ? "Turn off the Torch  " : "Turn on the Torch  " + count}
+            {isTorchOn ? "Turn off the Torch" : "Turn on the Torch " + count}
           </Text>
         </TouchableOpacity>
       </View>
