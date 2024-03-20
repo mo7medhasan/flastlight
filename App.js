@@ -23,8 +23,10 @@ const App = () => {
         intervalId = setInterval(() => {
           Torch.switchState(!isTorchOn);
           setIsTorchOn((prev) => !prev);
-        }, 1000 / 4); // Toggles 4 times per second when count is 9
+        }, 1000 / 4); 
+        // Toggles 4 times per second when count is 9
       }
+      
     } else {
       clearInterval(intervalId);
       Torch.switchState(false);
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 15,
     padding: 25,
-    backgroundColor: "#8ad24e",
+    backgroundColor: "#333",
     marginRight: 2,
     marginLeft: 2,
   },
