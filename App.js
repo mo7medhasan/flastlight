@@ -26,7 +26,6 @@ const App = () => {
         }, 1000 / 4); 
         // Toggles 4 times per second when count is 9
       }
-      
     } else {
       clearInterval(intervalId);
       Torch.switchState(false);
