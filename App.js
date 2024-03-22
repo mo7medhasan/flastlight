@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Torch from "react-native-torch";
+import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icons from expo package
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const App = () => {
   const [isTorchOn, setIsTorchOn] = useState(false);
@@ -39,7 +41,7 @@ const App = () => {
   };
 
   const handleIncrease = () => {
-    setCount((prev) => (prev === 20 ? prev : prev + 1));
+    setCount((prev) => (prev === 25 ? prev : prev + 1));
   };
 
   const handleMinus = () => {
@@ -47,17 +49,17 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={{...styles.container,backgroundColor:isTorchOn?"#fff":"#eee"}}>
+    <SafeAreaView style={{...styles.container,backgroundColor:isTorchOn?"#f99":"#fff"}}>
       <View>
         <Text style={styles.titleText}>
-          Turn on/off Flashlight to Make a Torch App in React Native
+          Turn on/off Flashlight
         </Text>
 
         <View
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
+            justifyContent: "space-between",marginVertical:50
           }}
         >
           <TouchableOpacity
@@ -112,15 +114,20 @@ const App = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
+        <View style={styles.shadowContainer}>
+             <TouchableOpacity
           activeOpacity={0.7}
-          style={{...styles.buttonStyle,backgroundColor:isTorchOn?"red":"#000"}}
+          style={{...styles.buttonMainStyle,backgroundColor:statusLite?"red":"#000"}}
           onPress={handlePress}
         >
           <Text style={{...styles.buttonTextStyle}}>
-            {isTorchOn ? "Turn off" : "Turn on" }
+            {statusLite ? 
+             <MaterialCommunityIcons name="flashlight-off" size={60} color="black" /> :
+             <MaterialCommunityIcons name="flashlight" size={60} color="white" />}
           </Text>
         </TouchableOpacity>
+        </View>
+  
       </View>
     </SafeAreaView>
   );
@@ -157,9 +164,46 @@ const styles = StyleSheet.create({
     backgroundColor: "#333",
     marginRight: 2,
     marginLeft: 2,
+    
+    borderRadius:300,shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  buttonMainStyle: {  justifyContent: "center",
+  marginTop: 15,
+  padding: 25,
+  backgroundColor: "#333",
+    marginRight: "auto",
+    marginLeft: "auto",
+    height:150,
+    width:150,
+    borderRadius:150,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   buttonTextStyle: {
     color: "#fff",
     textAlign: "center",
+  }, shadowContainer: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
+
 });
