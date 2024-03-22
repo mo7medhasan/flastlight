@@ -23,7 +23,7 @@ const App = () => {
         intervalId = setInterval(() => {
           Torch.switchState(!isTorchOn);
           setIsTorchOn((prev) => !prev);
-        }, 1000 / 4);  // Toggles 4 times per second when count is 9
+        },2000 /count);  
       }
     } else {
       clearInterval(intervalId);
@@ -39,7 +39,7 @@ const App = () => {
   };
 
   const handleIncrease = () => {
-    setCount((prev) => (prev === 9 ? prev : prev + 1));
+    setCount((prev) => (prev === 20 ? prev : prev + 1));
   };
 
   const handleMinus = () => {
@@ -47,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{...styles.container,backgroundColor:isTorchOn?"#fff":"#eee"}}>
       <View>
         <Text style={styles.titleText}>
           Turn on/off Flashlight to Make a Torch App in React Native
@@ -114,11 +114,11 @@ const App = () => {
         </View>
         <TouchableOpacity
           activeOpacity={0.7}
-          style={styles.buttonStyle}
+          style={{...styles.buttonStyle,backgroundColor:isTorchOn?"red":"#000"}}
           onPress={handlePress}
         >
-          <Text style={styles.buttonTextStyle}>
-            {isTorchOn ? "Turn off the Torch" : "Turn on the Torch " + count}
+          <Text style={{...styles.buttonTextStyle}}>
+            {isTorchOn ? "Turn off" : "Turn on" }
           </Text>
         </TouchableOpacity>
       </View>
