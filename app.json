@@ -16,23 +16,23 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.mo7med.flastlight"
+      "bundleIdentifier": "com.mo7med.flashlight"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.mo7med.flastlight"
+      "package": "com.mo7med.flashlight"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "owner": "mo7med",
     "extra": {
       "eas": {
-        "projectId": "3bbf456d-52f9-468a-9f43-02e199b4c386"
+        "projectId": "a4d7b6d6-4469-428e-bc06-8235170c37fb"
       }
-    },
-    "owner": "mo7med"
+    }
   }
 }
