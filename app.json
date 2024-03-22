@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "flastlight",
-    "slug": "flastlight",
+    "name": "flashlight",
+    "slug": "flashlight",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
