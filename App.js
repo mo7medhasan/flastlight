@@ -9,6 +9,7 @@ import {
 import Torch from "react-native-torch";
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icons from expo package
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import ProgressBarControl from "./ProgressBarControl";
 
 const App = () => {
   const [isTorchOn, setIsTorchOn] = useState(false);
@@ -18,14 +19,14 @@ const App = () => {
   useEffect(() => {
     let intervalId;
     if (statusLite) {
-      if (count === 1) {
+      if (count === 0) {
         Torch.switchState(true);
         setIsTorchOn(true);
       } else {
         intervalId = setInterval(() => {
           Torch.switchState(!isTorchOn);
           setIsTorchOn((prev) => !prev);
-        },2000 /count);  
+        },1000 /count);  
       }
     } else {
       clearInterval(intervalId);
@@ -55,6 +56,7 @@ const App = () => {
           Turn on/off Flashlight
         </Text>
 
+      <ProgressBarControl   count={count} setCount={setCount}/>
         <View
           style={{
             display: "flex",
