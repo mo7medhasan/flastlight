@@ -10,7 +10,7 @@ import Torch from "react-native-torch";
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icons from expo package
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ProgressBarControl from "./ProgressBarControl";
-import Compass from "./Compass";
+// import Compass from "./Compass";
 
 const App = () => {
   const [isTorchOn, setIsTorchOn] = useState(false);
