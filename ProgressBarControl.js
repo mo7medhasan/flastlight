@@ -20,11 +20,12 @@ const ProgressBarControl = ({count, setCount}) => {
 
   return (
     <View style={styles.container}>
-      <Animated.View style={[styles.bar, { width: `${count*10}%`}]} />
+      <Animated.View style={[styles.bar, { width: `${(count<=10?count:10)*10}%`}]} />
       <View style={styles.control}>
 
 {[...Array(11)].map((i,item)=>(
    <TouchableOpacity
+   key={item}
             activeOpacity={0.7}
             style={styles.buttonStyleMain}
             onPress={()=>setCount(item)}
