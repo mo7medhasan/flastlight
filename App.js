@@ -10,7 +10,9 @@ import Torch from "react-native-torch";
 import { FontAwesome } from '@expo/vector-icons'; // Import FontAwesome icons from expo package
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ProgressBarControl from "./ProgressBarControl";
+// import LinearGradient from "react-native-linear-gradient";
 // import Compass from "./Compass";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const App = () => {
   const [isTorchOn, setIsTorchOn] = useState(false);
@@ -117,19 +119,35 @@ const App = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.shadowContainer}>
+        <LinearGradient    colors={['transparent','#4c669f', '#3b5998', '#192f6a','transparent']}
+        style={{...styles.buttonMainStyle ,backgroundColor:statusLite?"red":"#000"}} 
+        ><View>
+               <TouchableOpacity
+          activeOpacity={0.7}
+          // style={{...styles.buttonMainStyle}}
+          onPress={handlePress}
+        >
+           <Text style={{...styles.buttonTextStyle}}>
+            {statusLite ? 
+             <MaterialCommunityIcons name="flashlight-off" size={60} color="black" /> :
+             <MaterialCommunityIcons name="flashlight" size={60} color="white" />}
+          </Text></TouchableOpacity>
+        </View>
+          </LinearGradient>
+        {/* <View style={styles.shadowContainer}>
              <TouchableOpacity
           activeOpacity={0.7}
           style={{...styles.buttonMainStyle,backgroundColor:statusLite?"red":"#000"}}
           onPress={handlePress}
         >
+
           <Text style={{...styles.buttonTextStyle}}>
             {statusLite ? 
              <MaterialCommunityIcons name="flashlight-off" size={60} color="black" /> :
              <MaterialCommunityIcons name="flashlight" size={60} color="white" />}
           </Text>
         </TouchableOpacity>
-        </View>
+        </View> */}
   {/* <Compass/> */}
       </View>
     </SafeAreaView>
